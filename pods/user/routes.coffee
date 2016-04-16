@@ -78,4 +78,5 @@ module.exports = [
         UserMiddleware.registerValidation
       ]
       action: Actions.register
+      content: contentGenerator.register
 ]

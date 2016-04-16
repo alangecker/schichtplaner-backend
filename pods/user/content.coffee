@@ -28,7 +28,7 @@ module.exports =
           hasPhoto: !!res.photo
           groups: {}
           event:
-            id: params.eventId
+            id: parseInt(params.eventId)
             shifts: []
             MainPosition: null
             FavoritePartner: []
@@ -85,3 +85,6 @@ module.exports =
 
     Store.getUserByPhone(number).then (res) ->
       callback({number:params.number,inUse:!!res})
+
+  register: (params, callback) ->
+    cabback({})

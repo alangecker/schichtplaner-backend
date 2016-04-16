@@ -11,13 +11,13 @@ module.exports = liquidFlux.createActions
       firstname: req.body.firstname
       surname: req.body.surname
       birthday: moment(req.body.birthday).format()
-      RefererId: parseInt(req.body.refererId)
+      RefererId: (if req.body.refererId then parseInt(req.body.refererId) else null)
       email: req.body.email
       password: req.body.password
       mobile: req.body.mobile
 
       event:
-        
+
         from: moment(req.body.present.start).format()
         until: moment(req.body.present.end).format()
         FavoritePartners: req.body.favoritePartners

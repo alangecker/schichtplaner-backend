@@ -43,4 +43,8 @@ module.exports = liquidFlux.createStore
 
   do:
     create: (payload) ->
-      console.log payload
+      console.log 'create'
+      models.User.create(payload).then (el) =>
+        console.log 'done'
+        @emitChange()
+      # console.log payload
