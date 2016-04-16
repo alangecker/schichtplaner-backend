@@ -61,6 +61,7 @@ module.exports = [
       ]
       content: contentGenerator.mailInUse
       cacheable: true
+
     new liquidFlux.Route
       type: 'GET'
       route: '/register/numbercheck/:number'
@@ -69,4 +70,12 @@ module.exports = [
       ]
       content: contentGenerator.numberInUse
       cacheable: true
+
+    new liquidFlux.Route
+      type: 'POST'
+      route: '/register'
+      middleware:[
+        UserMiddleware.registerValidation
+      ]
+      action: Actions.register
 ]

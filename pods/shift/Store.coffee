@@ -26,7 +26,7 @@ module.exports = liquidFlux.createStore
           {model: models.Group, as: 'AllowedGroups'}
         ]
         # TODO: order by start
-      ).catch(models.error)
+      )
 
 
     shiftPartners: (shifts, excludeUser) ->
@@ -63,31 +63,42 @@ module.exports = liquidFlux.createStore
               response[shift.id].push partnerShift.User.name if response[shift.id].indexOf(partnerShift.User.name) == -1
               break
         return response
-      ).catch(models.error)
+      )
 
   do:
     addShift: (payload) ->
       models.Shift.create(payload).then (el) =>
         @emitChange()
-      .catch(models.error)
+
 
     updateShift: (payload) ->
-      models.Shift.findOne(
+      uPromise = models.Shift.update(payload,
         where:
           id:payload.id
         include:[
           {model: models.User}
           {model: models.Group, as: 'AllowedGroups'}
         ]
-      ).then( (shift) =>
+      )
 
-        shift.set(payload)
-        shift.setAllowedGroups(payload.groups) if payload.groups
+      if payload.groups
+          uPromise = uPromise.then( ->
+            models.Shift.findOne(
+              where:
+                id:payload.id
+              include:[
+                {model: models.User}
+                {model: models.Group, as: 'AllowedGroups'}
+              ]
+            )
+          ).then( (shift) =>
+            shift.setAllowedGroups(payload.groups) if payload.groups
+            return shift.save()
+          )
 
-        return shift.save()
-      ).then(=>
+      uPromise.then(=>
         setTimeout( (=>@emitChange()), 10) # workaround, TODO: find out why Row issnt updated after promise gots resolved
-      ).catch(models.error)
+      )
 
 
     deleteShift: (shiftId) ->
@@ -96,8 +107,4 @@ module.exports = liquidFlux.createStore
           id:shiftId
       ).then( (el) =>
         @emitChange()
-      ).catch(models.error)
-
-      # models.Shift.create(payload).then (el) =>
-      #   @emitChange()
-      # .catch(models.error)
+      )

@@ -23,3 +23,10 @@ module.exports =
             rating: schedule.rating
         res.push el
       callback res
+
+  created: (params,callback,dres) ->
+    callback({
+      id: dres[0].id
+      eventId: dres[0].eventId
+      event: '2016' #TODO: read eventname from db
+    })

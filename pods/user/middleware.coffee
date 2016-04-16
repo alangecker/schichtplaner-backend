@@ -6,4 +6,7 @@ Validator =
   dateInFuture: (date) -> moment().isBefore(date)
 
 
-module.exports = {}
+module.exports =
+  registerValidation: (req, next, error) ->
+    # TODO: validation!
+    next()

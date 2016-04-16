@@ -11,7 +11,6 @@ module.exports = liquidFlux.createActions
       end: moment(req.body.end).format()
 
     @dispatch(constants.ADD, payload)
-    req.success()
 
   update: (req) ->
     payload =
@@ -20,10 +19,7 @@ module.exports = liquidFlux.createActions
     payload.start = moment(req.body.start).format() if req.body.start
     payload.end = moment(req.body.end).format() if req.body.end
     payload.groups = req.body.groups if req.body.groups
-
     @dispatch(constants.UPDATE, payload)
-    req.success()
 
   delete: (req) ->
     @dispatch(constants.DELETE, parseInt(req.params.shiftId))
-    req.success()

@@ -14,10 +14,7 @@ module.exports = liquidFlux.createActions
       rating: req.body.rating
       description: req.body.description
 
-
     @dispatch(constants.CREATE, payload)
-    .then req.success
-    .catch req.error
 
   update: (req) ->
     payload =
@@ -31,5 +28,3 @@ module.exports = liquidFlux.createActions
     payload.values.description = req.body.description if req.body.description
 
     @dispatch(constants.UPDATE, payload)
-    .then req.success
-    .catch req.error

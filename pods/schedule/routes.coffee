@@ -23,7 +23,7 @@ module.exports = [
         ScheduleMiddleware.createScheduleValidation
       ]
       action: Actions.create
-
+      content: contentGenerator.created
 
     # update schedule-infos
     new liquidFlux.Route
