@@ -87,4 +87,4 @@ module.exports =
       callback({number:params.number,inUse:!!res})
 
   register: (params, callback) ->
-    cabback({})
+    callback({})

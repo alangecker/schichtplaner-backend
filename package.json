@@ -13,13 +13,13 @@
   "dependencies": {
     "i40": "^1.3.1",
     "jwt-simple": "^0.3.1",
+    "liquidFlux": "git+ssh://git@github.com:alangecker/liquidFlux.git",
     "moment": "^2.10.6",
     "object-assign": "^4.0.1",
     "pg": "^4.4.2",
     "pg-hstore": "^2.3.2",
+    "scrypt": "^6.0.2",
     "sequelize": "^3.9.0",
-    "sha3": "^1.2.0",
-    "socket.io": "^1.3.7",
-    "liquidFlux": "git+ssh://git@github.com:alangecker/liquidFlux.git"
+    "socket.io": "^1.3.7"
   }
 }

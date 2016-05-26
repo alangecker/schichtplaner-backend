@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) ->
     firstname: DataTypes.STRING
     surname: DataTypes.STRING
     name: DataTypes.STRING
-    password: DataTypes.STRING
+    password: DataTypes.STRING # TODO: remove
+    # authentication: DataTypes.STRING
     photo: DataTypes.TEXT
     birthday: DataTypes.DATE
     mobile: DataTypes.STRING
